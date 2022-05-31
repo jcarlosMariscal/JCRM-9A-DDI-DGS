@@ -23,4 +23,4 @@ accion = input("¿Qué quiere hacer?: ")
 if accion == "registro":
     hazEl.registro()
 elif accion == "login":
-    hazEl.registro()
+    hazEl.login()
