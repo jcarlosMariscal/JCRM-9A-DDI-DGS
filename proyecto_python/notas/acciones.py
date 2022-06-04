@@ -13,3 +13,15 @@ class Acciones:
             print(f"\nPerfecto! Has guardado la nota: {nota.titulo}")
         else:
             print(f"\nNo se guardo tu nota, intentao más tarde: {usuario[1]}")
+
+    def mostrar(self, usuario):
+        print(f"\n{usuario[1]}!!! Estas son tus notas: \n")
+
+        nota = modelo.Nota(usuario[0])
+        notas = nota.listar()
+        # print(notas)
+
+        for nota in notas:
+            print("*********************************** ")
+            print(f"{nota[2]} - {nota[3]}")
+            print("*********************************** \n")
