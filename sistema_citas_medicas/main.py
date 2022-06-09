@@ -12,6 +12,6 @@ accion = input("¿Qué quiere hacer?: ")
 if accion == "r":
     hazEl.registro()
 elif accion == "l":
-    print("login")
+    hazEl.login()
 elif accion == "s":
     print("Vuelva pronto.")

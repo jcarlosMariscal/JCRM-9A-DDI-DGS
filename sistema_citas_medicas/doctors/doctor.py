@@ -41,3 +41,13 @@ class Doctor:
         except:
             result = [0, self]
         return result
+    
+    def login(self):
+        sql = "SELECT * FROM doctor WHERE email = %s AND password = %s"
+        cifrado = hashlib.sha256() # Cifrar contraseña
+        cifrado.update(self.password.encode('utf8'))
+
+        doctor = (self.email, cifrado.hexdigest())
+        cursor.execute(sql, doctor)
+        result = cursor.fetchone()
+        return result

@@ -18,3 +18,50 @@ class Acciones:
             print(f"\nPerfecto {registro[1].nombre} te has registrado  con el email {registro[1].email}")
         else:
             print("\nHa ocurrido un error, no se ha podido realizar su registro. Intente de nuevo más tarde.")
+
+    def login(self):
+        print("\nInicie sesión en el sistema")
+        try:
+            email = input("Introduce tu Email: ")
+            password = input("Introduce tu contraseña: ")
+
+            doctor = modelo.Doctor('','','','','',email, password)
+            login = doctor.login()
+            if email == login[6]:
+                print(f"Bienvenido {login[1]}, te has registrado en el sistema el {login[5]}")
+                self.proximasAcciones()
+        except Exception as e:
+            print(type(e)) - print(type(e).__name__)
+            print("\nLogin incorrecto!! Intentalo más tarde")
+
+    def proximasAcciones(self, usuario):
+        print("""
+        Acciones disponibles:
+            - Agregar consulta (a)
+            - Listar consultas (l)
+            - modificar consulta (m)
+            - Eliminar consulta (e)
+            - Salir (s)
+        """)
+
+        accion = input("¿Qué quieres hacer?: ")
+        # hazEl = notas.acciones.Acciones()
+        if accion == "a":
+            print("Vamos a agregar una consulta")
+            # hazEl.crear(usuario)
+            # self.proximasAcciones(usuario) 
+        elif accion == "l":
+            print("Esta es la lista de consultas")
+            # hazEl.mostrar(usuario)
+            # self.proximasAcciones(usuario)
+        elif accion == "m":
+            print("Vamos a modificar una consulta")
+            # hazEl.borrar(usuario)
+            # self.proximasAcciones(usuario)
+        elif accion == "e":
+            print("Vamos a eliminar una consulta")
+            # hazEl.borrar(usuario)
+            # self.proximasAcciones(usuario)
+        elif accion == "salir":
+            print("\nVuelva Pronto!!!")
+            exit()
