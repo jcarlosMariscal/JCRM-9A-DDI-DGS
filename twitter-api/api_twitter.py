@@ -1,6 +1,6 @@
 from sys import displayhook
 import tweepy
-import credentials as cre
+import tokens as cre
 import pandas as pd #Para mejor visualización
 import numpy as np
 
