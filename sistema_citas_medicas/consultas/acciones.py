@@ -51,3 +51,13 @@ class Acciones:
         else:
             print(f"\nNo se guardo tu nota, intentao más tarde: {doctor[1]}")
     
+    def eliminar(self, doctor):
+        print(f"\n{doctor[1]}!!! Borrar consultas")
+        nom_paciente = input("Introduce el nombre del paciente para eliminar consulta: ")
+
+        nota = modelo.Consulta(doctor[0], nom_paciente)
+        eliminar = nota.eliminar()
+        if eliminar[0] >= 1:
+            print(f"Se eliminó la consulta de: {nota.nom_paciente}")
+        else:
+            print("No se puedo eliminar la consulta, intenta más tarde...")

@@ -36,4 +36,8 @@ class Consulta:
         database.commit()
         return [cursor.rowcount, self]
 
-        
+    def eliminar(self):
+        sql = f"DELETE FROM consultas WHERE id_doctor = {self.id_doctor} AND nom_paciente = '{self.nom_paciente}'"
+        cursor.execute(sql)
+        database.commit()
+        return [cursor.rowcount, self]
