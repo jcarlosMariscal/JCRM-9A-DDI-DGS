@@ -53,12 +53,12 @@ class Acciones:
             self.proximasAcciones(doctor) 
         elif accion == "l":
             print("Esta es la lista de consultas")
-            # hazEl.mostrar(usuario)
-            # self.proximasAcciones(usuario)
+            hazEl.listar(doctor)
+            self.proximasAcciones(doctor)
         elif accion == "m":
             print("Vamos a modificar una consulta")
-            # hazEl.borrar(usuario)
-            # self.proximasAcciones(usuario)
+            hazEl.actualizar(doctor)
+            self.proximasAcciones(doctor)
         elif accion == "e":
             print("Vamos a eliminar una consulta")
             # hazEl.borrar(usuario)
