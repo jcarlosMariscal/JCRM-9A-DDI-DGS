@@ -1,4 +1,5 @@
 import doctors.doctor as modelo
+import consultas.acciones
 
 class Acciones:
     def registro(self):
@@ -21,20 +22,20 @@ class Acciones:
 
     def login(self):
         print("\nInicie sesión en el sistema")
-        try:
-            email = input("Introduce tu Email: ")
-            password = input("Introduce tu contraseña: ")
+        # try:
+        email = input("Introduce tu Email: ")
+        password = input("Introduce tu contraseña: ")
 
-            doctor = modelo.Doctor('','','','','',email, password)
-            login = doctor.login()
-            if email == login[6]:
-                print(f"Bienvenido {login[1]}, te has registrado en el sistema el {login[5]}")
-                self.proximasAcciones()
-        except Exception as e:
-            print(type(e)) - print(type(e).__name__)
-            print("\nLogin incorrecto!! Intentalo más tarde")
+        doctor = modelo.Doctor('','','','','',email, password)
+        login = doctor.login()
+        if email == login[6]:
+            print(f"Bienvenido {login[1]}, te has registrado en el sistema el {login[5]}")
+            self.proximasAcciones(login)
+        # except Exception as e:
+        #     print(type(e)) - print(type(e).__name__)
+        #     print("\nLogin incorrecto!! Intentalo más tarde")
 
-    def proximasAcciones(self, usuario):
+    def proximasAcciones(self, doctor):
         print("""
         Acciones disponibles:
             - Agregar consulta (a)
@@ -45,11 +46,11 @@ class Acciones:
         """)
 
         accion = input("¿Qué quieres hacer?: ")
-        # hazEl = notas.acciones.Acciones()
+        hazEl = consultas.acciones.Acciones()
         if accion == "a":
-            print("Vamos a agregar una consulta")
-            # hazEl.crear(usuario)
-            # self.proximasAcciones(usuario) 
+            # print("Vamos a agregar una consulta")
+            hazEl.agregar(doctor)
+            self.proximasAcciones(doctor) 
         elif accion == "l":
             print("Esta es la lista de consultas")
             # hazEl.mostrar(usuario)
