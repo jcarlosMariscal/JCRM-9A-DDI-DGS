@@ -17,7 +17,7 @@ class Acciones:
         doctor = modelo.Doctor(nombre, apellidos, cedula, especialidad, telefono, nconsultorio, email, password)
         registro = doctor.registrar()
         if registro[0] >= 1:
-            print(f"\nPerfecto {registro[1].nombre} se ha registrado  con el email {registro[1].email}")
+            print(f"\nPerfecto {registro[1].nombre} {registro[1].apellidos} se ha registrado  con el email {registro[1].email}")
         else:
             print("\nHa ocurrido un error, no se ha podido realizar su registro. Intente de nuevo más tarde.")
 
@@ -30,7 +30,7 @@ class Acciones:
         doctor = modelo.Doctor('','','','','', '',email, password)
         login = doctor.login()
         if email == login[7]:
-            print(f"\nBienvenido {login[1]}, ha iniciado sesión en el sistema el correo {login[5]}")
+            print(f"\n[{login[6].upper()}] Bienvenido {login[1]} {login[2]}, ha iniciado sesión en el sistema con el correo {login[7]}")
             self.proximasAcciones(login)
         # except Exception as e:
         #     print(type(e)) - print(type(e).__name__)

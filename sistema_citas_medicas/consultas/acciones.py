@@ -2,7 +2,7 @@ import consultas.consulta as modelo
 
 class Acciones:
     def agregar(self, doctor):
-        print(f"\nOk {doctor[1]}!!! Vamos a agendar una nueva consulta...")
+        print(f"\n[{doctor[6].upper()}] {doctor[1]} {doctor[2]}  - Agendar nueva consulta")
 
         nom_paciente = input("Introduce el nombre del paciente: ")
         genero = input("Introduce su genero (M/F): ")
@@ -18,7 +18,7 @@ class Acciones:
             print(f"\nNo se pudo agendar la consulta, intente más tarde {doctor[1]}")
     
     def listar(self, doctor):
-        print(f"\n{doctor[1]}: Estas son las consultas agendadas: ")
+        print(f"\n[{doctor[6].upper()}] {doctor[1]} {doctor[2]} - Detalles de consultas agendadas")
         consulta = modelo.Consulta(doctor[0])
         consultas = consulta.listar()
 
@@ -34,7 +34,7 @@ class Acciones:
     -----------------------------------------""")
 
     def actualizar(self, doctor):
-        print(f"\nOk {doctor[1]}!!! Vamos a modificar una consulta...")
+        print(f"\n[{doctor[6].upper()}] {doctor[1]} {doctor[2]} - Modificar una consulta")
 
         nom_paciente = input("Introduce el nombre del paciente a modificar: ")
 
@@ -46,7 +46,7 @@ class Acciones:
             print(f"\nNo se encontró ninguna consulta con el nombre del pacientte [{nom_paciente}], verifique la ortografía : {doctor[1]}")
 
     def modificar(self, doctor,nombre):
-        print(f"\nMuy bien {doctor[1]}!!! Escriba los nuevos datos del paciente {nombre}")
+        print(f"\n[{doctor[6].upper()}] {doctor[1]} {doctor[2]} - Escriba a continuación los nuevos datos de {nombre}")
 
         nom_paciente = input("Introduce el nuevo nombre del paciente: ")
         genero = input("Introduce su genero (M/F): ")
@@ -62,7 +62,7 @@ class Acciones:
             print(f"\nNo se pudo modificar la consulta agendada del paciente, intente más tarde: {doctor[1]}")
     
     def eliminar(self, doctor):
-        print(f"\n{doctor[1]}!!! Borrar consultas")
+        print(f"\n[{doctor[6].upper()}] {doctor[1]} {doctor[2]} - Borrar una consulta de la agenda")
         nom_paciente = input("Introduce el nombre del paciente para eliminar la consulta: ")
 
         nota = modelo.Consulta(doctor[0], nom_paciente)
