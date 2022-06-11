@@ -2,62 +2,72 @@ import consultas.consulta as modelo
 
 class Acciones:
     def agregar(self, doctor):
-        print(f"Ok {doctor[1]}!!! Vamos a agendar una nueva consulta...")
+        print(f"\nOk {doctor[1]}!!! Vamos a agendar una nueva consulta...")
 
         nom_paciente = input("Introduce el nombre del paciente: ")
-        telefono = input("Escribe el telefono: ")
-        edad = input("Escribe su edad: ")
+        genero = input("Introduce su genero (M/F): ")
+        edad = input("Introduce su edad: ")
+        telefono = input("Introduce su telefono: ")
+        fecha_consulta = input("Introduce la fecha para hacer la consulta [yyyy-mm-dd]: ")
 
-        consulta = modelo.Consulta(doctor[0], nom_paciente, telefono, edad)
+        consulta = modelo.Consulta(doctor[0], nom_paciente, genero, edad, telefono, fecha_consulta)
         guardar = consulta.agregar()
         if guardar[0] >= 1:
             print(f"\nPerfecto! Has agendado la consulta para el paciente: {consulta.nom_paciente}\n")
         else:
-            print(f"\nNo se guardo tu nota, intentao más tarde: {doctor[1]}")
+            print(f"\nNo se pudo agendar la consulta, intente más tarde {doctor[1]}")
     
     def listar(self, doctor):
-        print(f"{doctor[1]}: Estas son sus consultas: ")
+        print(f"\n{doctor[1]}: Estas son las consultas agendadas: ")
         consulta = modelo.Consulta(doctor[0])
         consultas = consulta.listar()
 
 
         for consulta in consultas:
-            print(f"{consulta[2]} - {consulta[3]} - {consulta[4]} - {consulta[5]}")
+            print(f"""
+    Paciente: {consulta[2]}
+    Genero: {consulta[3]}
+    Edad: {consulta[4]}
+    Telefono: {consulta[5]}
+    Para el: {consulta[6]}
+    Agendado el: {consulta[7]}
+    -----------------------------------------""")
 
     def actualizar(self, doctor):
-        print(f"Ok {doctor[1]}!!! Vamos a modificar una consulta...")
+        print(f"\nOk {doctor[1]}!!! Vamos a modificar una consulta...")
 
-        nom_paciente = input("Introduce el nombre del paciente: ")
+        nom_paciente = input("Introduce el nombre del paciente a modificar: ")
 
         consulta = modelo.Consulta(doctor[0], nom_paciente)
         validar = consulta.validar()
-        print(f"\nEste es el valor devuelto: {validar[0]}\n")
         if validar[0] != 0:
             self.modificar(doctor, nom_paciente)
         else:
-            print(f"\nParece que no hay una consulta agendada para ese paciente, intentao más tarde: {doctor[1]}")
+            print(f"\nNo se encontró ninguna consulta con el nombre del pacientte [{nom_paciente}], verifique la ortografía : {doctor[1]}")
 
     def modificar(self, doctor,nombre):
-        print(f"Ok {doctor[1]}!!! Escriba los nuevos datos del paciente {nombre}")
+        print(f"\nMuy bien {doctor[1]}!!! Escriba los nuevos datos del paciente {nombre}")
 
         nom_paciente = input("Introduce el nuevo nombre del paciente: ")
-        telefono = input("Escribe el nuevo telefono: ")
-        edad = input("Escribe la edad: ")
+        genero = input("Introduce su genero (M/F): ")
+        edad = input("Introduce su edad: ")
+        telefono = input("Introduce su telefono: ")
+        fecha_consulta = input("Introduce la fecha para hacer la consulta [yyyy-mm-dd]: ")
 
-        consulta = modelo.Consulta(doctor[0], nom_paciente, telefono, edad, nombre)
+        consulta = modelo.Consulta(doctor[0], nom_paciente, genero, edad, telefono, fecha_consulta, nombre)
         guardar = consulta.actualizar()
         if guardar[0] >= 1:
             print(f"\nSe han modificado los datos del paciente: {consulta.nom_paciente}. Presione (l) para listar las consultas y verificar el cambio\n")
         else:
-            print(f"\nNo se guardo tu nota, intentao más tarde: {doctor[1]}")
+            print(f"\nNo se pudo modificar la consulta agendada del paciente, intente más tarde: {doctor[1]}")
     
     def eliminar(self, doctor):
         print(f"\n{doctor[1]}!!! Borrar consultas")
-        nom_paciente = input("Introduce el nombre del paciente para eliminar consulta: ")
+        nom_paciente = input("Introduce el nombre del paciente para eliminar la consulta: ")
 
         nota = modelo.Consulta(doctor[0], nom_paciente)
         eliminar = nota.eliminar()
         if eliminar[0] >= 1:
-            print(f"Se eliminó la consulta de: {nota.nom_paciente}")
+            print(f"\nSe eliminó la consulta de: {nota.nom_paciente}")
         else:
-            print("No se puedo eliminar la consulta, intenta más tarde...")
+            print("\nNo se puedo eliminar la consulta, intenta más tarde...")

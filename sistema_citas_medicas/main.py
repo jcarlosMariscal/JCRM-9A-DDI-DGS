@@ -1,4 +1,4 @@
-from doctors import acciones
+from doctores import acciones
 
 print("""
 Seleccione una acción:
@@ -14,4 +14,4 @@ if accion == "r":
 elif accion == "l":
     hazEl.login()
 elif accion == "s":
-    print("Vuelva pronto.")
+    print("\nVuelva pronto.")

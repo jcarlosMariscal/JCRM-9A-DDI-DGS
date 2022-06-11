@@ -1,20 +1,22 @@
-import doctors.conexion as conexion
+import doctores.conexion as conexion
 
 connect = conexion.conectar()
 database = connect[0]
 cursor = connect[1]
 
 class Consulta:
-    def __init__(self,id_doctor, nom_paciente="", telefono="", edad="", nombre = ""):
+    def __init__(self,id_doctor, nom_paciente="", genero="", edad=None, telefono="", fecha_consulta = None, nombre = ""):
         self.id_doctor = id_doctor
         self.nom_paciente = nom_paciente
-        self.telefono = telefono
+        self.genero = genero
         self.edad = edad
+        self.telefono = telefono
+        self.fecha_consulta = fecha_consulta
         self.nombre = nombre
 
     def agregar(self):
-        sql = "INSERT INTO consultas VALUES(null,%s, %s, %s, %s, NOW())"
-        consulta = (self.id_doctor, self.nom_paciente, self.telefono, self.edad)
+        sql = "INSERT INTO consultas VALUES(null,%s, %s, %s, %s, %s, %s, NOW())"
+        consulta = (self.id_doctor, self.nom_paciente, self.genero, self.edad, self.telefono, self.fecha_consulta)
 
         cursor.execute(sql, consulta)
         database.commit()
